@@ -28,8 +28,9 @@ function sendReq(string $path, ReqMethod $method, bool $json, array $query = arr
             )
         )
     );
+
     if ($bearer != "") $opts['http']['header'][] = "Authorization: Bearer {$bearer}";
-    if ($query == array()) $opts['http']['content'] = $query;
+    if (count($query) != 0) $opts['http']['content'] = http_build_query($query);
 
     $ctx = stream_context_create($opts);
     $res = file_get_contents($config['backend_url'].$path, false, $ctx);

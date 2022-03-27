@@ -19,7 +19,7 @@
             $config = require '../../config.php';
 
             if ($config['register']['require_invite_code']) {
-                echo '<input class="txtfield" type="text" name="invite_code" placeholder="Invite Code">';
+                echo '<input class="txtfield" type="text" name="register_key" placeholder="Invite Code">';
             }
             
         ?>

@@ -9,8 +9,11 @@ switch ($_POST['type']) {
     case 'register': {
         echo 'REG B)';
         
-        $res = sendReq("ping", ReqMethod::GET, array("nigger" => ":D"), true);
-        echo $res['sex'];
+        $res = sendReq("auth/register", ReqMethod::POST, false, array(
+            'password' => $_POST['password'],
+            'register_key' => $_POST['register_key']
+        ));
+        echo $res;
 
         break;
     }
