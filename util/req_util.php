@@ -16,26 +16,29 @@ enum ReqMethod {
     }
 }
 
-function sendReq(string $path, ReqMethod $method, array $query, bool $json) {
+function sendReq(string $path, ReqMethod $method, bool $json, array $query = array(), string $bearer = "") {
 
     global $config;
 
-    $opts = array('http' => array(
-        'method' => $method->getStr(),
-        'header' => 'Content-type: application/x-www-form-urlencoded',
-        'content' => $query
-    ));
+    $opts = array(
+        'http' => array(
+            'method' => $method->getStr(),
+            'header' => array(
+                'Content-type: application/x-www-form-urlencoded'
+            )
+        )
+    );
+    if ($bearer != "") $opts['http']['header'][] = "Authorization: Bearer {$bearer}";
+    if ($query == array()) $opts['http']['content'] = $query;
+
     $ctx = stream_context_create($opts);
     $res = file_get_contents($config['backend_url'].$path, false, $ctx);
 
     if ($json) {
         return json_decode($res, true);
     }
-    return $res;
-}
 
-function asd() {
-    echo ":d";
+    return $res;
 }
 
 ?>
