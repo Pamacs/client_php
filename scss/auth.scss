@@ -1,0 +1,57 @@
+@import './util/color.scss';
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.auth_form {
+    border-radius: 1rem;
+    background-color: $base-fg;
+
+    padding: 1rem;
+    width: 20rem;
+    height: 10rem;
+
+    gap: .3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+
+    span.auth_text {
+        margin-top: auto;
+        margin-bottom: auto;
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: $accent_d_0;
+    }
+
+    input.txtfield {
+        border: 0.15rem $accent solid;
+        height: 1.5rem;
+        border-radius: 100px;
+        padding: .1rem;
+        text-indent: 16px;
+
+        &:active, &:focus {
+            outline: none;
+            border: 0.15rem $accent_d_0 solid;
+        }
+    }
+
+    input.authbtn {
+        margin-left: auto;
+        background-color: $accent;
+        border-radius: .5rem;
+        border: none;
+        padding: .3rem .8rem .3rem .8rem;
+        font-weight: bold;
+
+        &:active, &:hover {
+            cursor: pointer;
+        }
+    }
+}

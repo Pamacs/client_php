@@ -1,0 +1,26 @@
+@import './util/color.scss';
+
+html, body {height: 100vh; width: 100vw;}
+
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    div.error {
+        margin-left: 25%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.error_cap {
+    color: $accent_d_0;
+    font-size: 5rem;
+}
+
+.error_title {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
