@@ -4,9 +4,12 @@ foreach ($_POST as $key => $val) {
 }
 
 require '../util/req_util.php';
+require '../util/throw_error.php';
 
 switch ($_POST['type']) {
+
     case 'register': {
+
         echo 'REG B)';
         
         $res = sendReq("auth/register", ReqMethod::POST, false, array(

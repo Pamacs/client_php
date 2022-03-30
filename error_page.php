@@ -1,7 +1,13 @@
 <?php
 
+session_start();
+
 $error_title = "This is a debug title";
-$error_desc = "Something that describes the error."
+$error_desc = "Something that describes the error.";
+
+if ( isset($_SESSION["error"]["title"]) ) { $error_title = $_SESSION["error"]["title"]; }
+if ( isset($_SESSION["error"]["desc"]) ) { $error_desc = $_SESSION["error"]["desc"]; }
+
 /*
 Required parameters at post:
     - error_title
@@ -24,8 +30,11 @@ Required parameters at post:
         <span class="error_cap">Error</span>
         <?php
 
-        echo '<span class="error_title">'.$error_title.'</span>';
-        echo '<span class="error_desc">'.$error_desc.'</span>';
+        echo '<span class="error_title">'.htmlspecialchars($error_title).'</span>';
+        echo '<span class="error_desc">'.htmlspecialchars($error_desc).'</span>';
+
+        unset($_SESSION['error']);
+        session_destroy();
 
         ?>
     </div>
