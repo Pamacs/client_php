@@ -22,6 +22,7 @@ function sendReq(string $path, ReqMethod $method, bool $json, array $query = arr
 
     $opts = array(
         'http' => array(
+            'ignore_errors' => true,
             'method' => $method->getStr(),
             'header' => array(
                 'Content-type: application/x-www-form-urlencoded'

@@ -1,0 +1,23 @@
+@import './util/color.scss';
+
+html, body {height: 100vh; width: 100vw;}
+
+body {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        display: flex;
+        flex-direction: column;
+    }
+
+}
+
+.title {
+    font-size: 3rem;
+    font-weight: 600;
+    border-bottom: 2px solid black;
+}
