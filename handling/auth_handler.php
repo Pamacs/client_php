@@ -1,7 +1,4 @@
 <?php
-foreach ($_POST as $key => $val) {
-    echo "Key: ".$key.", Value: $val"." | ";
-}
 
 require_once '../util/req_util.php';
 require_once '../util/notifier.php';
@@ -70,9 +67,8 @@ switch ($_POST['type']) {
             }
         }
 
-        echo $res;
-
         break;
     }
 }
+
 ?>
