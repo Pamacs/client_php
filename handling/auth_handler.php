@@ -3,12 +3,8 @@ foreach ($_POST as $key => $val) {
     echo "Key: ".$key.", Value: $val"." | ";
 }
 
-require '../util/req_util.php';
-require '../util/notifier.php';
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+require_once '../util/req_util.php';
+require_once '../util/notifier.php';
 
 switch ($_POST['type']) {
 
@@ -20,7 +16,11 @@ switch ($_POST['type']) {
         ]);
 
         if ($res["type"] == "SUCCESS") {
-            forceful_feedback( "Registration Successful", ["Your new UserID: ".$res["data"]["user_id"], "The account's recovery key (!!!): ".$res["data"]["recovery_key"]] );
+            forceful_feedback( "Registration Successful", [
+                    "0" => "Your new UserID: ".$res["data"]["user_id"],
+                    "1" => "The account's recovery key (!!!): ".$res["data"]["recovery_key"],
+                    $config["root"]."auth/login" => "> Back to login"
+                ] );
         } else {
             throw_error($res["message"], "The input can't be validated properly");
         }

@@ -25,7 +25,12 @@ if ( isset($_SESSION["feedback"]["desc"]) ) { $desc = $_SESSION["feedback"]["des
         <?php
 
         echo '<span class="title">'.htmlspecialchars($title).'</span>';
-        foreach ($desc as $desc_row) {
+        foreach ($desc as $key => $desc_row) {
+                            // https://ihateregex.io/
+            if ( !preg_match("/^[0-9]+$/", $key) ) {
+                echo '<span class="desc"><a href="'.filter_var($key, FILTER_SANITIZE_STRING).'">'.htmlspecialchars($desc_row).'</a></span>';
+                break;
+            }
             echo '<span class="desc">'.htmlspecialchars($desc_row).'</span>';
         }
 

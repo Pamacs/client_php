@@ -19,6 +19,7 @@ enum ReqMethod {
 function sendReq(string $path, ReqMethod $method, bool $json, array $query = array(), string $bearer = "") {
 
     global $config;
+    require_once 'notifier.php';
 
     $opts = array(
         'http' => array(
@@ -36,7 +37,10 @@ function sendReq(string $path, ReqMethod $method, bool $json, array $query = arr
     $ctx = stream_context_create($opts);
     $res = file_get_contents($config['backend_url'].$path, false, $ctx);
 
-    if ($json) {
+    if (!$res) {
+        throw_error("Backend not accessible", "It's either down or it hasn't been set up correctly.");
+    }
+    elseif ($json) {
         return json_decode($res, true);
     }
 
