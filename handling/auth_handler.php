@@ -16,6 +16,7 @@ switch ($_POST['type']) {
         ]);
 
         switch ($res['type']) {
+
             case "SUCCESS": {
                 forceful_feedback( "Registration Successful", [
                     "0" => "Your new UserID: ".$res["data"]["user_id"],
@@ -32,12 +33,42 @@ switch ($_POST['type']) {
 
         break;
     }
+
     case 'login': {
         
         $res = sendReq("auth/login", ReqMethod::POST, true, array(
             'user_id' => $_POST['user_id'],
             'password' => $_POST['password']
         ));
+
+        switch ($res['type']) {
+
+            case "SUCCESS": {
+
+                session_start();
+
+                $_SESSION['access_token'] = $res['data']['access_token'];
+
+                
+
+                break;
+            }
+            case "ERROR": {
+
+                switch($res['message']) {
+                    case "MALFORMED_INPUT": {
+                        throw_error($res["message"], "The input can't be validated properly");
+                        break;
+                    }
+                    case "CREDENTIAL_ERROR": {
+                        throw_error($res["message"], "We couldn't find any accounts with the given credentials");
+                        break;
+                    }
+                }
+
+                break;
+            }
+        }
 
         echo $res;
 
