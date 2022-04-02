@@ -15,21 +15,26 @@ switch ($_POST['type']) {
             'register_key' => $_POST['register_key']
         ]);
 
-        if ($res["type"] == "SUCCESS") {
-            forceful_feedback( "Registration Successful", [
+        switch ($res['type']) {
+            case "SUCCESS": {
+                forceful_feedback( "Registration Successful", [
                     "0" => "Your new UserID: ".$res["data"]["user_id"],
                     "1" => "The account's recovery key (!!!): ".$res["data"]["recovery_key"],
                     $config["root"]."auth/login" => "> Back to login"
                 ] );
-        } else {
-            throw_error($res["message"], "The input can't be validated properly");
+                break;
+            }
+            case "ERROR": {
+                throw_error($res["message"], "The input can't be validated properly");
+                break;
+            }
         }
 
         break;
     }
     case 'login': {
         
-        $res = sendReq("auth/login", ReqMethod::POST, false, array(
+        $res = sendReq("auth/login", ReqMethod::POST, true, array(
             'user_id' => $_POST['user_id'],
             'password' => $_POST['password']
         ));
