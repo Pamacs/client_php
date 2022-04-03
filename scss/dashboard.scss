@@ -1,0 +1,43 @@
+@import './util/color.scss';
+
+sidebar {
+    width: min-content;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    background-color: $base-fg;
+    border-right: 0.3rem pink solid;
+    flex-direction: column;
+    box-sizing: border-box; //what is this property omg it fixed even my mental health
+    gap: 0.5rem;
+
+    #sidebar\:sign {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+
+        #sign\:name {
+            color: $accent_d_0;
+            font-weight: 600;
+            font-size: 2rem;
+        }
+
+        #sign\:icon {
+            width: 3rem; height: 3rem;
+            border-radius: 100%;
+        }
+
+    }
+
+    .sidebar-btn {
+        display: flex;
+        text-decoration: none;
+        color: $accent_d_1;
+        font-size: 1.1rem;
+        gap: .25rem;
+    }
+
+    .sidebar-btn.logout-btn {
+        margin-top: auto;
+    }
+}
