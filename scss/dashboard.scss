@@ -1,7 +1,10 @@
 @import './util/color.scss';
 
+$snap_limit: 600px;
+
 body {
     display: flex;
+    overflow: hidden;
 }
 
 sidebar {
@@ -49,7 +52,7 @@ sidebar {
         margin-top: auto;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: $snap_limit) {
 
         #sign\:name {display: none;}
 
@@ -70,4 +73,17 @@ sidebar {
 }
 main {
     padding: 1rem;
+    flex-grow: 1;
+    overflow-y: auto;
+
+    #header {
+        font-size: 2rem;
+        font-weight: 600;
+
+        border-bottom: 2px $mono_9 solid;
+    }
+
+    @media only screen and (max-width: $snap_limit) {
+
+    }
 }
