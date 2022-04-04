@@ -1,5 +1,9 @@
 @import './util/color.scss';
 
+body {
+    display: flex;
+}
+
 sidebar {
     width: min-content;
     height: 100%;
@@ -35,9 +39,35 @@ sidebar {
         color: $accent_d_1;
         font-size: 1.1rem;
         gap: .25rem;
+
+        :not(.material-icons) {
+            color: inherit;
+        }
     }
 
     .sidebar-btn.logout-btn {
         margin-top: auto;
     }
+
+    @media only screen and (max-width: 600px) {
+
+        #sign\:name {display: none;}
+
+        a.sidebar-btn {
+            justify-content: center;
+        }
+
+        a.sidebar-btn :not(.material-icons) {
+            display: none !important;
+            color: aqua;
+        }
+
+        a.sidebar-btn .material-icons {
+            font-size: 2rem;
+        }
+        
+    }
+}
+main {
+    padding: 1rem;
 }
