@@ -83,6 +83,10 @@ main {
         border-bottom: 2px $mono_9 solid;
     }
 
+    #containers {
+        margin-top: 10px;
+    }
+
     @media only screen and (max-width: $snap_limit) {
 
     }

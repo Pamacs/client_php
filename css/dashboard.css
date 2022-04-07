@@ -68,5 +68,8 @@ main #header {
   font-weight: 600;
   border-bottom: 2px #3d3d3d solid;
 }
+main #containers {
+  margin-top: 10px;
+}
 
 /*# sourceMappingURL=dashboard.css.map */
